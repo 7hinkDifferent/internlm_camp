@@ -1,0 +1,1 @@
+this is the repo for shanghai ailab [internlm camp2](https://github.com/InternLM/Tutorial/tree/camp2) homework
