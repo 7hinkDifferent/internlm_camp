@@ -9,8 +9,8 @@ save_dir='models'
 
 model_cards = [
     ['Shanghai_AI_Laboratory/internlm2-chat-7b', 'v1.1.0'],
-    ['maidalun/bce-embedding-base_v1', None],
-    ['maidalun/bce-reranker-base_v1', None]
+    ['maidalun/bce-embedding-base_v1', 'v0.0.3'],
+    ['maidalun/bce-reranker-base_v1', 'v0.0.1']
 ]
 
 for model_id, revision in model_cards:
