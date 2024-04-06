@@ -59,15 +59,13 @@ CPU: Intel(R) Xeon(R) W-2295 CPU @ 3.00GHz
 
 GPU: NVIDIA GeForce RTX 3090
 
-(mac is overwhelmed!)
-
-![](images/mac.png)
-
 2. code repo preparation
 
 ```bash
 git clone https://github.com/internlm/huixiangdou && cd huixiangdou
 git checkout 447c6f7e68a1657fce1c4f7c740ea1700bde0440
+mkdir repodir
+git clone https://github.com/internlm/huixiangdou --depth=1 repodir/huixiangdou
 cd ..
 ```
 
@@ -89,9 +87,9 @@ pip install protobuf==4.25.3 accelerate==0.28.0 aiohttp==3.9.3 auto-gptq==0.7.1 
 
 run `python model_download.py` modified from the [tutorial](https://github.com/InternLM/Tutorial/blob/camp2/helloworld/hello_world.md#22-%E4%B8%8B%E8%BD%BD-internlm2-chat-18b-%E6%A8%A1%E5%9E%8B) to download weights for models `internlm2-chat-7b`, `bce-embedding-base_v1`, `bce-reranker-base_v1`.
 
-search models needed in [modelscope](https://modelscope.cn/models)
+search models needed in [modelscope](https://modelscope.cn/models).
 
-![]()
+![](images/model_download.png)
 
 ## basic part
 
@@ -99,9 +97,22 @@ search models needed in [modelscope](https://modelscope.cn/models)
 
 1. wechat group deployment
 
+
 2. online huixiangdou
 
+
 3. self-hosted server
+
+follow the [tutorial](https://github.com/InternLM/Tutorial/blob/camp2/huixiangdou/readme.md#21-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6) to get prepared with `huixiangdou/config.ini`, `huixiangdou/repodir/`, `huixiangdou/resource/good_questions.json`, `huixiangdou/test_queries.json`, `huixiangdou/workdir`.
+
+change queries in `huixiangdou/huixiangdou/main.py` and `cd huixiangdou/` before run `python3 -m huixiangdou.main --standalone`
+```python
+# huixiangdou/huixiangdou/main.py
+# line 74
+...
+    queries = ["huixiangdou 是什么？", "茴香豆怎么部署到微信群", "今天天气怎么样？"]
+...
+```
 
 ### 2. huixiangdou on InternLM Studio
 
