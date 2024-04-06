@@ -8,10 +8,11 @@ os.makedirs('models', exist_ok=True)
 save_dir='models'
 
 model_cards = [
-    # ['Shanghai_AI_Laboratory/internlm2-chat-1.8b', 'v1.1.0'],
-    # ['Shanghai_AI_Laboratory/internlm2-chat-7b', 'v1.1.0'],
-    # ['Shanghai_AI_Laboratory/internlm-xcomposer2-7b', 'v1.0.0'],
+    ['Shanghai_AI_Laboratory/internlm2-chat-1_8b', 'v1.1.0'],
+    ['Shanghai_AI_Laboratory/internlm2-chat-7b', 'v1.1.0'],
+    ['Shanghai_AI_Laboratory/internlm-xcomposer2-7b', 'v1.0.0'],
     ['Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b', 'v1.0.0'],
+    # ['Shanghai_AI_Laboratory/internlm-xcomposer2-7b-4bit', 'v1.0.0']
 ]
 
 for model_id, revision in model_cards:
