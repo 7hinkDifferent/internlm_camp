@@ -80,7 +80,7 @@ conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=
 ### if cuda not available, not fully tested
 conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 -c pytorch
 ### install packages
-pip install protobuf==4.25.3 accelerate==0.28.0 aiohttp==3.9.3 auto-gptq==0.7.1 bcembedding==0.1.3 beautifulsoup4==4.8.2 einops==0.7.0 faiss-gpu==1.7.2 langchain==0.1.14 loguru==0.7.2 lxml_html_clean==0.1.0 openai==1.16.1 openpyxl==3.1.2 pandas==2.2.1 pydantic==2.6.4 pymupdf==1.24.1 python-docx==1.1.0 pytoml==0.1.21 readability-lxml==0.8.1 redis==5.0.3 requests==2.31.0 scikit-learn==1.4.1.post1 sentence_transformers==2.2.2 textract==1.6.5 tiktoken==0.6.0 transformers==4.39.3 transformers_stream_generator==0.0.5 unstructured==0.11.2 modelscope==1.9.5
+pip install protobuf==4.25.3 accelerate==0.28.0 aiohttp==3.9.3 auto-gptq==0.7.1 bcembedding==0.1.3 beautifulsoup4==4.8.2 einops==0.7.0 faiss-gpu==1.7.2 langchain==0.1.14 loguru==0.7.2 lxml_html_clean==0.1.0 openai==1.16.1 openpyxl==3.1.2 pandas==2.2.1 pydantic==2.6.4 pymupdf==1.24.1 python-docx==1.1.0 pytoml==0.1.21 readability-lxml==0.8.1 redis==5.0.3 requests==2.31.0 scikit-learn==1.4.1.post1 sentence_transformers==2.2.2 textract==1.6.5 tiktoken==0.6.0 transformers==4.39.3 transformers_stream_generator==0.0.5 unstructured==0.11.2 modelscope==1.9.5 apscheduler==3.10.4 fastapi==0.103.0 flask==3.0.2 lark-oapi==1.2.1 passlib==1.7.4 PyJWT==2.8.0 python-multipart==0.0.9 starlette==0.27.0 tqdm==4.65.0 uvicorn==0.27.0
 ```
 
 4. model weight download
@@ -100,6 +100,26 @@ search models needed in [modelscope](https://modelscope.cn/models).
 
 2. online huixiangdou
 
+uploaded [InternLM2 Technical Report](https://arxiv.org/abs/2403.17297) and ask the following questions in a row.
+
+![](images/web1.png)
+
+![](images/web2.png)
+
+![](images/web3.png)
+
+![](images/web4.png)
+
+![](images/web5.png)
+
+some interesting things are worth noticing:
+
+- sensitive information will not be displayed
+- knowledge outside of the database will sometimes be dug out. there is not much about gpt4 in the report (mentioned twice) but huixiangdou answers as follows. (this is probabilistic model!)
+
+![](images/web6.png)
+
+![](images/web7.png)
 
 3. self-hosted server
 
@@ -114,12 +134,20 @@ change queries in `huixiangdou/huixiangdou/main.py` and `cd huixiangdou/` before
 ...
 ```
 
+web demo deployment
+follow the [instructions](https://github.com/InternLM/HuixiangDou/tree/main/web) to boost your deployment.
+
+
+
 ### 2. huixiangdou on InternLM Studio
 
-just check
+follow the [tutorial](https://github.com/InternLM/Tutorial/blob/camp2/huixiangdou/readme.md#2-%E4%BD%BF%E7%94%A8%E8%8C%B4%E9%A6%99%E8%B1%86%E6%90%AD%E5%BB%BA-rag-%E5%8A%A9%E6%89%8B) to deploy on InternLM Studio.
+
+answer to the question 茴香豆怎么部署到微信群？ is as follows
 
 ![](images/how_to_deploy.png)
 
 ## advanced part
 ### [application] `huixiangdou-math` for my high school teachers!
 
+test: high_school_math
