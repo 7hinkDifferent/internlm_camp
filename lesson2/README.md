@@ -37,10 +37,20 @@ GPU: NVIDIA GeForce RTX 3090
 2. code repo preparation
 
 ```bash
-# internlm2-chat-1.8b
-# internlm2-chat-7b
-# lagent
-# internlm-xcomposer
+### internlm2-chat-1.8b: manual created
+### internlm2-chat-7b: manual created
+### lagent
+git clone https://gitee.com/internlm/lagent.git
+# git clone https://github.com/internlm/lagent.git
+cd lagent
+git checkout 581d9fb8987a5d9b72bb9ebd37a95efd47d479ac
+cd ..
+### internlm-xcomposer
+git clone https://gitee.com/internlm/InternLM-XComposer.git
+# git clone https://github.com/internlm/InternLM-XComposer.git
+cd /root/demo/InternLM-XComposer
+git checkout f31220eddca2cf6246ee2ddf8e375a40457ff626
+cd ..
 ```
 
 3. env preparation
