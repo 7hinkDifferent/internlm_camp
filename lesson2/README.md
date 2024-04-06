@@ -37,8 +37,8 @@ GPU: NVIDIA GeForce RTX 3090
 2. code repo preparation
 
 ```bash
-### internlm2-chat-1.8b: manual created
-### internlm2-chat-7b: manual created
+### internlm2-chat-1.8b: manually created
+### internlm2-chat-7b: manually created
 ### lagent
 git clone https://gitee.com/internlm/lagent.git
 # git clone https://github.com/internlm/lagent.git
