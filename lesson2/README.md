@@ -48,7 +48,7 @@ cd ..
 ### internlm-xcomposer
 git clone https://gitee.com/internlm/InternLM-XComposer.git
 # git clone https://github.com/internlm/InternLM-XComposer.git
-cd /root/demo/InternLM-XComposer
+cd InternLM-XComposer
 git checkout f31220eddca2cf6246ee2ddf8e375a40457ff626
 cd ..
 ```
