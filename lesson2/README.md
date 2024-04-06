@@ -22,6 +22,7 @@ CPU: Intel(R) Xeon(R) W-2295 CPU @ 3.00GHz
 GPU: NVIDIA GeForce RTX 3090
 
 (mac is overwhelmed!)
+
 ![](images/mac.png)
 
 2. code repo preparation
@@ -54,6 +55,7 @@ pip install -e .
 4. model weight download
 
 run `python model_download.py` modified from the [tutorial](https://github.com/InternLM/Tutorial/blob/camp2/helloworld/hello_world.md#22-%E4%B8%8B%E8%BD%BD-internlm2-chat-18b-%E6%A8%A1%E5%9E%8B) to download weights for models `internlm2-chat-1.8b`, `internlm2-chat-7b`, `internlm-xcomposer2-7b`, `internlm-xcomposer2-vl-7b`.
+
 ![](images/model_download.png) 
 
 ## basic part
@@ -132,6 +134,9 @@ to be compatible with cpu, I have modified the following code so that run with `
 
 if you want to run with cpu, follow the above implementations.
 
+![](images/vqa_web.png)
+
+![](images/vqa_cmd.png)
 
 
 ### 3. play with Lagent
