@@ -95,10 +95,7 @@ search models needed in [modelscope](https://modelscope.cn/models).
 
 ### 1. my huixiangdou web app
 
-1. wechat group deployment
-
-
-2. online huixiangdou
+1. online huixiangdou
 
 uploaded [InternLM2 Technical Report](https://arxiv.org/abs/2403.17297) and ask the following questions in a row.
 
@@ -121,7 +118,7 @@ some interesting things are worth noticing:
 
 ![](images/web7.png)
 
-3. self-hosted server
+2. self-hosted server
 
 follow the [tutorial](https://github.com/InternLM/Tutorial/blob/camp2/huixiangdou/readme.md#21-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6) to get prepared with `huixiangdou/config.ini`, `huixiangdou/repodir/`, `huixiangdou/resource/good_questions.json`, `huixiangdou/test_queries.json`, `huixiangdou/workdir`.
 
