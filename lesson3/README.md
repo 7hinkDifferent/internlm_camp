@@ -161,7 +161,7 @@ run backend:
 
 run pipeline:
 
-![](images/web.png)
+![](images/run_pipeline.png)
 
 run proxy:
 
@@ -173,9 +173,11 @@ and we can see our self-hosted huixiangdou!
 
 create a database `good_boy` and upload [Agent-FLAN](https://arxiv.org/abs/2403.12881). 
 
-![](images/agent-flan.png)
+![](images/good_boy.png)
 
 query about Agent-FLAN as follows:
+
+![](images/agent-flan.png)
 
 ![](images/agent-flan_web.png)
 
