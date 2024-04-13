@@ -135,8 +135,9 @@ change queries in `huixiangdou/huixiangdou/main.py` and `cd huixiangdou/` before
 ```
 
 web demo deployment
-follow the [instructions](https://github.com/InternLM/HuixiangDou/tree/main/web) to boost your deployment.
+follow the [instructions](https://github.com/InternLM/HuixiangDou/tree/main/web) to boost your deployment. (need to install npm and redis)
 
+(may need to down-grade `protobuf` if some problem arises. dont really remember...)
 
 
 ### 2. huixiangdou on InternLM Studio
