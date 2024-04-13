@@ -196,7 +196,7 @@ answer to the question 茴香豆怎么部署到微信群？ is as follows
 ## advanced part
 ### [application] `huixiangdou-laws` on feishu for everyone's reference!
 
-having watched the movie 第二十条, want to make a laws reference. create database `some_laws_copy` and test.
+having watched the movie 第二十条, want to make a laws reference. create database `some_laws_copy` based on [here](http://www.npc.gov.cn/zgrdw/npc/lfzt/rlys/2008-08/21/content_1882895.htm) and test.
 
 ![](images/law.png)
 
