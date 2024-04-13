@@ -211,3 +211,11 @@ advice: add delete database feature!
 
 test: high_school_math
 test: some_laws_copy
+
+## final-project
+
+below is a good advice for the project. will try to make it on Discord or 钉钉 with my team.
+
+A.【工程方向】 参与贡献茴香豆前端，将茴香豆助手部署到下列平台
+
+Github issue、Discord、钉钉、X
