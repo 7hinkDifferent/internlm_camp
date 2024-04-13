@@ -194,6 +194,23 @@ answer to the question 茴香豆怎么部署到微信群？ is as follows
 ![](images/how_to_deploy.png)
 
 ## advanced part
-### [application] `huixiangdou-math` for my high school teachers!
+### [application] `huixiangdou-laws` on feishu for everyone's reference!
+
+having watched the movie 第二十条, want to make a laws reference. create database `some_laws_copy` and test.
+
+![](images/law.png)
+
+![](images/web_law.png)
+
+follow this [tutorial](https://aicarrier.feishu.cn/docx/H1AddcFCioR1DaxJklWcLxTDnEc) to depoly bot on feishu.
+
+![](images/feishu-bot.png)
+
+try on feishu.
+
+![](images/feishu-response.png)
+
+advice: add delete database feature!
 
 test: high_school_math
+test: some_laws_copy
