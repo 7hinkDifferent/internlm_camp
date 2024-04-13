@@ -149,7 +149,7 @@ run redis and check process:
 
 ![](images/redis_running.png)
 
-modified `env.sh` following [tutorial](https://github.com/InternLM/HuixiangDou/tree/main/web#%E5%90%AF%E5%8A%A8) and append `. "/path/to/lesson3/env.sh"` to ~/.bashrc and `source ~/.bashrc` before npm step
+then, (IMPORTANT) modified `env.sh` following [tutorial](https://github.com/InternLM/HuixiangDou/tree/main/web#%E5%90%AF%E5%8A%A8) and append `. "/path/to/lesson3/env.sh"` to `~/.bashrc` and `source ~/.bashrc` before npm step
 
 build npm:
 
