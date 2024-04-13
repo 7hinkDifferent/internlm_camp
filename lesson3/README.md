@@ -139,6 +139,49 @@ follow the [instructions](https://github.com/InternLM/HuixiangDou/tree/main/web)
 
 (may need to down-grade `protobuf` if some problem arises. dont really remember...)
 
+modified based on the default `redis.conf`:
+
+![](images/redis_conf.png)
+
+run redis and check process:
+
+![](images/redis.png)
+
+![](images/redis_running.png)
+
+modified `env.sh` following [tutorial](https://github.com/InternLM/HuixiangDou/tree/main/web#%E5%90%AF%E5%8A%A8) and append `. "/path/to/lesson3/env.sh"` to ~/.bashrc and `source ~/.bashrc` before npm step
+
+build npm:
+
+![](images/npm.png)
+
+run backend:
+
+![](images/run_web.png)
+
+run pipeline:
+
+![](images/web.png)
+
+run proxy:
+
+![](images/run_proxy.png)
+
+and we can see our self-hosted huixiangdou!
+
+![](images/web.png)
+
+create a database `good_boy` and upload [Agent-FLAN](https://arxiv.org/abs/2403.12881). 
+
+![](images/agent-flan.png)
+
+query about Agent-FLAN as follows:
+
+![](images/agent-flan_web.png)
+
+![](images/agent-flan_pipeline.png)
+
+![](images/agent-flan_proxy.png)
 
 ### 2. huixiangdou on InternLM Studio
 
