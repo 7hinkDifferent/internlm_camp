@@ -1,0 +1,37 @@
+import gradio as gr
+from lmdeploy import pipeline, TurbomindEngineConfig
+
+# download internlm2 to the base_path directory using git tool
+base_path = './internlm2-chat-7b'
+os.system(f'git clone https://code.openxlab.org.cn/OpenLMLab/internlm2-chat-7b.git {base_path}')
+os.system(f'cd {base_path} && git lfs pull')
+
+# os.system('lmdeploy serve api_server /path/to/internlm2-chat-1_8b-4bit --model-format awq --quant-policy 4 --server-name 0.0.0.0 --server-port 23333 --tp 1')
+# os.system('lmdeploy serve gradio http://localhost:23333 --server-name 0.0.0.0 --server-port 6006')
+
+# TODO: adapt from the following code
+# backend_config = TurbomindEngineConfig(cache_max_entry_count=0.4)
+
+# pipe = pipeline(base_path,
+#                 backend_config=backend_config)
+# response = pipe(['Hi, pls intro yourself', '上海是'])
+# print(response)
+
+import gradio as gr
+import os
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModel
+
+tokenizer = AutoTokenizer.from_pretrained(base_path,trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(base_path,trust_remote_code=True, torch_dtype=torch.float16).cuda()
+
+def chat(message, history):
+    for response, history in model.stream_chat(tokenizer, message, history, max_length=2048, top_p=0.7, temperature=1):
+        yield response
+
+gr.ChatInterface(chat,
+                 title="InternLM2-Chat-7B",
+                description="""
+InternLM is mainly developed by Shanghai AI Laboratory.  
+                 """,
+                 ).queue(1).launch()

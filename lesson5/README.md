@@ -103,3 +103,4 @@ next, create and run `gradio_llava.py` to directly start a gradio web
 
 https://github.com/InternLM/Tutorial/tree/camp2/tools/openxlab-deploy
 
+https://huggingface.co/spaces/internlm/InternLM2-Chat-20B-TurboMind-4Bits
