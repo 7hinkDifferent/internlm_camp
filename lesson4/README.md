@@ -328,7 +328,7 @@ train model
 
 run `xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-dir /root/ft/train` to start xtuner or start with deepspeed strategy `xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-dir /root/ft/train_deepspeed --deepspeed deepspeed_zero2`
 
-![](images/training.png)
+![](images/300iter.png)
 
 model transform
 
