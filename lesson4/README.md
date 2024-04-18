@@ -330,6 +330,8 @@ run `xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-
 
 ![](images/300iter.png)
 
+![](images/600iter.png)
+
 model transform
 
 run `xtuner convert pth_to_hf /root/ft/train/internlm2_1_8b_qlora_alpaca_e3_copy.py /root/ft/train/iter_768.pth /root/ft/huggingface
