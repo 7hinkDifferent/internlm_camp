@@ -386,7 +386,7 @@ create `app.py`, `requirements.txt`, `packages.txt` following the [tutorial](htt
 
 copy `final_model/` to current directory
 
-change `app.py` `base_path` to `./final_model` and run `gradio app.py` to test locally. remove `.cuda()` and change to `torch.float32` to be able to run on cpu
+change `app.py` `base_path` to `./final_model` and run `gradio app.py` to test locally. remove `.cuda()` and change to `torch.float32` to be able to run on cpu. add `weights_only=True` if you run into `torch.load` problem
 
 ![](images/local_assistant.png)
 
