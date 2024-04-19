@@ -19,7 +19,7 @@ OpenXLab 部署教程：https://github.com/InternLM/Tutorial/tree/camp2/tools/op
 
 ### 1. finetune my assistant
 
-env preparation
+**env preparation**
 
 run the following command to install env
 ```bash
@@ -51,7 +51,7 @@ pip install -e '.[all]'
 
 ![](images/env.png)
 
-data preparation
+**data preparation**
 
 create file `/root/ft/data/generate_data.py` with the following code and run the code
 
@@ -94,13 +94,13 @@ with open('personal_assistant.json', 'w', encoding='utf-8') as f:
 
 ![](images/data.png)
 
-model preparation
+**model preparation**
 
 soft link `internlm2-chat-1_8b` to `/root/ft/model`
 
 ![](images/model.png)
 
-config preparation
+**config preparation**
 
 modified based on `internlm2_1_8b_full_alpaca_e3`
 
@@ -324,7 +324,7 @@ randomness = dict(seed=None, deterministic=False)
 log_processor = dict(by_epoch=False)
 ```
 
-train model
+**train model**
 
 run `xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-dir /root/ft/train` to start xtuner or start with deepspeed strategy `xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-dir /root/ft/train_deepspeed --deepspeed deepspeed_zero2`
 
@@ -332,25 +332,57 @@ run `xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-
 
 ![](images/600iter.png)
 
-model transform
+![](images/finish.png)
 
-run `xtuner convert pth_to_hf /root/ft/train/internlm2_1_8b_qlora_alpaca_e3_copy.py /root/ft/train/iter_768.pth /root/ft/huggingface
-` to convert pth format to huggingface format
+**model transform**
 
+run `xtuner convert pth_to_hf /root/ft/train/internlm2_1_8b_qlora_alpaca_e3_copy.py /root/ft/train/iter_768.pth /root/ft/huggingface` to convert pth format to huggingface format
 
-model integration
+![](images/transform.png)
 
+**model integration**
 
-model chat
+run the following command to integrate the model to `final model`
 
+```bash
+# 创建一个名为 final_model 的文件夹存储整合后的模型文件
+mkdir -p /root/ft/final_model
 
-model deployment
+# 解决一下线程冲突的 Bug 
+export MKL_SERVICE_FORCE_INTEL=1
 
+# 进行模型整合
+# xtuner convert merge  ${NAME_OR_PATH_TO_LLM} ${NAME_OR_PATH_TO_ADAPTER} ${SAVE_PATH} 
+xtuner convert merge /root/ft/model /root/ft/huggingface /root/ft/final_model
+```
 
+**model chat**
+
+run command `xtuner chat /root/ft/model --prompt-template internlm2_chat` and `xtuner chat /root/ft/final_model --prompt-template internlm2_chat` to chat with the `original model` and `final model`
+
+![](images/original_chat.png)
+
+![](images/finetune_chat.png)
+
+the latter on is going crazy if i dont stop manually
+
+**model wen demo**
+
+install `streamlit` and clone the repo. modify `/root/ft/web_demo/InternLM/chat/web_demo.py` and run `streamlit run /root/ft/web_demo/InternLM/chat/web_demo.py --server.address 127.0.0.1 --server.port 6006` to enable web demo
+
+![](images/streamlit_install.png)
+
+![](images/streamlit_cmd.png)
+
+![](images/streamlit.png)
 
 ## advanced part
 
 ### 1. deploy my assistant on OpenXLab
 
 ### 2. finetune multi-modal model
+
+https://github.com/InternLM/Tutorial/blob/camp2/xtuner/llava/xtuner_llava.md
+
+install `Xtuner` just like the above...
 
