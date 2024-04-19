@@ -380,43 +380,29 @@ install `streamlit` and clone the repo. modify `/root/ft/web_demo/InternLM/chat/
 
 ### 1. deploy my assistant on OpenXLab
 
-checkout branch `l4_demo` or this [url](https://github.com/7hinkDifferent/internlm_camp/tree/l4_demo)
+checkout branch `l4_demo` or this [url](https://github.com/7hinkDifferent/internlm_camp/tree/l4_demo) for gradio code
 
-create `app.py`, `requirements.txt`, `packages.txt` following the [tutorial](https://github.com/InternLM/Tutorial/blob/camp2/tools/openxlab-deploy/README.md)
+checkout [openxlab model](https://openxlab.org.cn/models/detail/ThinkDifferent/internlm2-chat-1_8b-assistant/tree/main) for the finetuned model `final_model`
 
-copy `final_model/` to current directory
+create empty model page on openxlab and clone then copy `final_model/` to upload
 
-change `app.py` `base_path` to `./final_model` and run `gradio app.py` to test locally. remove `.cuda()` and change to `torch.float32` to be able to run on cpu. add `weights_only=True` if you run into `torch.load` problem
+![](images/model_page.png)
+
+create `app.py`, `requirements.txt`, `packages.txt` following the [tutorial](https://github.com/InternLM/Tutorial/blob/camp2/tools/openxlab-deploy/README.md) and push to github
+
+change `app.py` `base_path` to `./final_model` and run `gradio app.py` to test locally. remove `.cuda()` and change to `torch.float32` to be able to run on cpu
+
+![](images/app_code.png)
 
 ![](images/local_assistant.png)
 
-use `git` and `git lfs` to upload repo
+![](images/app_build.png)
 
-```bash
-# install git
-sudo apt-get update
-sudo apt-get install git
+sync github repo with openxlab app and see what is happening
 
-# install git lfs
-sudo apt-get update
-sudo apt-get install git-lfs
+https://openxlab.org.cn/apps/detail/ThinkDifferent/internlm2-chat-1_8b-assistant
 
-# use git install lfs
-git lfs install
-
-# track large files
-git lfs track '*.bin'
-git lfs track '*.model'
-
-# commit
-git add .
-git commit 'you commit message'
-git push
-```
-
-![](images/git.png)
-
-sync with OpenXLab and see what is happening
+(is currently requiring gpu resources to enable running)
 
 ### 2. finetune multi-modal model
 
@@ -486,7 +472,6 @@ xtuner chat /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b \
   --prompt-template internlm2_chat \
   --image /root/tutorial/xtuner/llava/llava_data/test_img/oph.jpg
 ```
-
 
 ![](images/tune_qa.png)
 
