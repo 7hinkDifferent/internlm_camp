@@ -3,7 +3,9 @@ import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModel
 
-base_path = './final_model'
+base_path = './internlm2-chat-1_8b-assistant'
+os.system(f'git clone https://code.openxlab.org.cn/ThinkDifferent/internlm2-chat-1_8b-assistant.git {base_path}')
+os.system(f'cd {base_path} && git lfs pull')
 
 tokenizer = AutoTokenizer.from_pretrained(base_path, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(base_path, trust_remote_code=True, torch_dtype=torch.float32)
