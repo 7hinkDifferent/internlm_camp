@@ -380,6 +380,44 @@ install `streamlit` and clone the repo. modify `/root/ft/web_demo/InternLM/chat/
 
 ### 1. deploy my assistant on OpenXLab
 
+checkout branch `l4_demo` or this [url](https://github.com/7hinkDifferent/internlm_camp/tree/l4_demo)
+
+create `app.py`, `requirements.txt`, `packages.txt` following the [tutorial](https://github.com/InternLM/Tutorial/blob/camp2/tools/openxlab-deploy/README.md)
+
+copy `final_model/` to current directory
+
+change `app.py` `base_path` to `./final_model` and run `gradio app.py` to test locally. remove `.cuda()` and change to `torch.float32` to be able to run on cpu
+
+![](images/local_assistant.png)
+
+use `git` and `git lfs` to upload repo
+
+```bash
+# install git
+sudo apt-get update
+sudo apt-get install git
+
+# install git lfs
+sudo apt-get update
+sudo apt-get install git-lfs
+
+# use git install lfs
+git lfs install
+
+# track large files
+git lfs track '*.bin'
+git lfs track '*.model'
+
+# commit
+git add .
+git commit 'you commit message'
+git push
+```
+
+![](images/git.png)
+
+sync with OpenXLab and see what is happening
+
 ### 2. finetune multi-modal model
 
 follow the [nice tutorial](https://github.com/InternLM/Tutorial/blob/camp2/xtuner/llava/xtuner_llava.md)
