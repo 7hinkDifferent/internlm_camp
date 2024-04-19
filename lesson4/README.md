@@ -382,7 +382,74 @@ install `streamlit` and clone the repo. modify `/root/ft/web_demo/InternLM/chat/
 
 ### 2. finetune multi-modal model
 
-https://github.com/InternLM/Tutorial/blob/camp2/xtuner/llava/xtuner_llava.md
+follow the [nice tutorial](https://github.com/InternLM/Tutorial/blob/camp2/xtuner/llava/xtuner_llava.md)
 
 install `Xtuner` just like the above...
 
+generate finetune data with the following command
+
+```bash
+cd ~ && git clone https://github.com/InternLM/tutorial -b camp2 && conda activate xtuner0.1.17 && cd tutorial
+
+python /root/tutorial/xtuner/llava/llava_data/repeat.py \
+  -i /root/tutorial/xtuner/llava/llava_data/unique_data.json \
+  -o /root/tutorial/xtuner/llava/llava_data/repeated_data.json \
+  -n 200
+```
+
+![](images/llava_data.png)
+
+prepare the config file `llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy.py`
+
+![](images/llava_config.png)
+
+run `xtuner train /root/tutorial/xtuner/llava/llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy.py --deepspeed deepspeed_zero2` to start finetune
+
+![](images/llava_train.png)
+
+compare the model before and after the finetune with the following command
+
+```bash
+# 解决小bug
+export MKL_SERVICE_FORCE_INTEL=1
+export MKL_THREADING_LAYER=GNU
+
+# pth转huggingface
+xtuner convert pth_to_hf \
+  llava_internlm2_chat_1_8b_clip_vit_large_p14_336_e1_gpu8_pretrain \
+  /root/share/new_models/xtuner/iter_2181.pth \
+  /root/tutorial/xtuner/llava/llava_data/iter_2181_hf
+
+# 启动！
+xtuner chat /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b \
+  --visual-encoder /root/share/new_models/openai/clip-vit-large-patch14-336 \
+  --llava /root/tutorial/xtuner/llava/llava_data/iter_2181_hf \
+  --prompt-template internlm2_chat \
+  --image /root/tutorial/xtuner/llava/llava_data/test_img/oph.jpg
+```
+
+![](images/ori_qa.png)
+
+```bash
+# 解决小bug
+export MKL_SERVICE_FORCE_INTEL=1
+export MKL_THREADING_LAYER=GNU
+
+# pth转huggingface
+xtuner convert pth_to_hf \
+  /root/tutorial/xtuner/llava/llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy.py \
+  /root/tutorial/xtuner/llava/work_dirs/llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy/iter_1200.pth \
+  /root/tutorial/xtuner/llava/llava_data/iter_1200_hf
+
+# 启动！
+xtuner chat /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b \
+  --visual-encoder /root/share/new_models/openai/clip-vit-large-patch14-336 \
+  --llava /root/tutorial/xtuner/llava/llava_data/iter_1200_hf \
+  --prompt-template internlm2_chat \
+  --image /root/tutorial/xtuner/llava/llava_data/test_img/oph.jpg
+```
+
+
+![](images/tune_qa.png)
+
+we can see the question-answer ability improves.
