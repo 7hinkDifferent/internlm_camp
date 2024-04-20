@@ -402,7 +402,7 @@ sync github repo with openxlab app and see what is happening
 
 https://openxlab.org.cn/apps/detail/ThinkDifferent/internlm2-chat-1_8b-assistant
 
-(is currently requiring gpu resources to enable running)
+![](images/openxlab.png)
 
 ### 2. finetune multi-modal model
 
