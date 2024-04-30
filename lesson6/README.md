@@ -156,4 +156,93 @@ run `python /root/agent/direct_use.py`
 
 ### 1. AgentLego WebUI
 
-### 2. customized Lagent and AgentLego
+modified `/root/agent/agentlego/webui/modules/agents/lagent_agent.py` line 105 to replace model with `internlm2-chat-7b`
+
+run `lmdeploy serve api_server /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-7b --server-name 127.0.0.1 --model-name internlm2-chat-7b --cache-max-entry-count 0.1` to start api_server
+
+![](images/api_server2.png)
+
+start another terminal and run `python one_click.py` in `/root/agent/agentlego/webui`
+
+![](images/one_click.png)
+
+checkout local web to see the demo. configure agent, tool and use object detection in the chat page
+
+![](images/agent_tab.png)
+
+![](images/tool_tab.png)
+
+![](images/web_demo.png)
+
+### 2. customized AgentLego
+
+create `/root/agent/agentlego/agentlego/tools/magicmaker_image_generation.py` with the following code and register in `/root/agent/agentlego/agentlego/tools/__init__.py`
+
+```python
+import json
+import requests
+
+import numpy as np
+
+from agentlego.types import Annotated, ImageIO, Info
+from agentlego.utils import require
+from .base import BaseTool
+
+
+class MagicMakerImageGeneration(BaseTool):
+
+    default_desc = ('This tool can call the api of magicmaker to '
+                    'generate an image according to the given keywords.')
+
+    styles_option = [
+        'dongman',  # 动漫
+        'guofeng',  # 国风
+        'xieshi',   # 写实
+        'youhua',   # 油画
+        'manghe',   # 盲盒
+    ]
+    aspect_ratio_options = [
+        '16:9', '4:3', '3:2', '1:1',
+        '2:3', '3:4', '9:16'
+    ]
+
+    @require('opencv-python')
+    def __init__(self,
+                 style='guofeng',
+                 aspect_ratio='4:3'):
+        super().__init__()
+        if style in self.styles_option:
+            self.style = style
+        else:
+            raise ValueError(f'The style must be one of {self.styles_option}')
+        
+        if aspect_ratio in self.aspect_ratio_options:
+            self.aspect_ratio = aspect_ratio
+        else:
+            raise ValueError(f'The aspect ratio must be one of {aspect_ratio}')
+
+    def apply(self,
+              keywords: Annotated[str,
+                                  Info('A series of Chinese keywords separated by comma.')]
+        ) -> ImageIO:
+        import cv2
+        response = requests.post(
+            url='https://magicmaker.openxlab.org.cn/gw/edit-anything/api/v1/bff/sd/generate',
+            data=json.dumps({
+                "official": True,
+                "prompt": keywords,
+                "style": self.style,
+                "poseT": False,
+                "aspectRatio": self.aspect_ratio
+            }),
+            headers={'content-type': 'application/json'}
+        )
+        image_url = response.json()['data']['imgUrl']
+        image_response = requests.get(image_url)
+        image = cv2.cvtColor(cv2.imdecode(np.frombuffer(image_response.content, np.uint8), cv2.IMREAD_COLOR),cv2.COLOR_BGR2RGB)
+        return ImageIO(image)
+```
+
+lanch the demo agin to try image generation
+
+![](images/gen.png)
