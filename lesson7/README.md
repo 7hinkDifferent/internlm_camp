@@ -74,4 +74,10 @@ python run.py
 
 ## advanced part
 
-### 1. 
+### 1. upload customized dataset to OpenCompass
+
+create [README_OPENCOMPASS.md](README_OPENCOMPASS.md) following the [instructions](https://mp.weixin.qq.com/s/_s0a9nYRye0bmqVdwXRVCg)
+
+upload to the repo
+
+![](images/web.png)
